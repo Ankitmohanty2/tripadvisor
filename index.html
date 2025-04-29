@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tripadvisor: Over a billion reviews & contributions for Hotels, Attractions, Restaurants, and more</title>
+    <!--Icon-->
+    <link rel="Icon" href="images/image 1.jpeg">
+    <!--Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!--Tailwind CSS-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        'trip-green': '#34E0A1',
+                        'trip-green-hover': '#84E9BD',
+                    }
+                }
+            }
+        }
+    </script>
+    <!--Font Awesome CDN Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .swiper {
+            width: 100%;
+            height: 100%;
+            padding: 20px 0;
+        }
+        .swiper-slide {
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #000;
+            background: rgba(255, 255, 255, 0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .swiper-pagination-bullet {
+            background: #000;
+            opacity: 0.5;
+            width: 8px;
+            height: 8px;
+        }
+        .swiper-pagination-bullet-active {
+            background: #000;
+            opacity: 1;
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="font-poppins overflow-x-hidden bg-white">
+ 
+    <nav class="sticky top-0 bg-white z-50 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center justify-between py-4">
+              
+                <div class="flex items-center cursor-pointer w-full md:w-auto justify-between">
+                    <div class="flex items-center">
+                        <img class="w-8 h-8" src="images/image 1.jpeg" alt="Tripadvisor Logo">
+                        <h1 class="ml-2 text-xl font-bold">Tripadvisor</h1>
+                    </div>
+                    
+                    <button class="md:hidden text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+
+               
+                <div class="hidden md:flex space-x-4 mt-4 md:mt-0">
+                    <h4 class="nav-link hover:bg-gray-50 px-4 py-2 rounded-full cursor-pointer">Discover</h4>
+                    <h4 class="nav-link hover:bg-gray-50 px-4 py-2 rounded-full cursor-pointer">Trips</h4>
+                    <h4 class="nav-link hover:bg-gray-50 px-4 py-2 rounded-full cursor-pointer">Review</h4>
+                    <h4 class="nav-link hover:bg-gray-50 px-4 py-2 rounded-full cursor-pointer">Forms</h4>
+                </div>
+
+              
+                <div class="flex items-center space-x-4 mt-4 md:mt-0 w-full md:w-auto justify-center md:justify-end">
+                    <div class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 px-4 py-2 rounded-full transition-colors duration-200">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>|</span>
+                        <h4>INR</h4>
+                    </div>
+                    <button class="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800 transition-colors duration-200">
+                        <h3>Sign in</h3>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+   
+    <div class="text-center py-6 md:py-10">
+        <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">Where to?</h1>
+    </div>
+
+   
+    <div class="flex flex-wrap justify-center gap-4 md:gap-6 px-4 md:px-6 py-4 md:py-6 overflow-x-auto">
+        <p class="flex items-center hover:border-b-2 border-black cursor-pointer whitespace-nowrap text-sm md:text-base transition-all duration-200"><i class="fa-solid fa-house mr-2"></i> Search all</p>
+        <p class="flex items-center hover:border-b-2 border-black cursor-pointer whitespace-nowrap text-sm md:text-base transition-all duration-200"><i class="fa-solid fa-bed mr-2"></i> Hotel</p>
+        <p class="flex items-center hover:border-b-2 border-black cursor-pointer whitespace-nowrap text-sm md:text-base transition-all duration-200"><i class="fa-solid fa-camera mr-2"></i> Things to Do</p>
+        <p class="flex items-center hover:border-b-2 border-black cursor-pointer whitespace-nowrap text-sm md:text-base transition-all duration-200"><i class="fa-solid fa-utensils mr-2"></i> Restaurants</p>
+        <p class="flex items-center hover:border-b-2 border-black cursor-pointer whitespace-nowrap text-sm md:text-base transition-all duration-200"><i class="fa-solid fa-plane mr-2"></i> Flights</p>
+        <p class="flex items-center hover:border-b-2 border-black cursor-pointer whitespace-nowrap text-sm md:text-base transition-all duration-200"><i class="fa-solid fa-house-lock mr-2"></i> Holidays Home</p>
+    </div>
+
+  
+    <div class="container mx-auto px-4 md:px-6 py-4 md:py-6">
+        <div class="flex flex-col md:flex-row items-center bg-white rounded-full shadow-lg p-2 max-w-3xl mx-auto">
+            <div class="flex items-center w-full md:w-auto mb-2 md:mb-0 md:flex-1">
+                <i class="fa-solid fa-magnifying-glass text-gray-500 px-4 md:px-6"></i>
+                <input type="text" placeholder="Places to go, Things to do, Hotels...." class="flex-1 outline-none text-sm md:text-base w-full">
+            </div>
+            <button class="bg-trip-green text-white px-6 md:px-8 py-3 rounded-full hover:bg-trip-green-hover transition-colors duration-200 w-full md:w-auto whitespace-nowrap font-medium">Search</button>
+        </div>
+    </div>
+
+   
+    <div class="relative container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="relative rounded-2xl overflow-hidden hover-scale">
+            <img src="images/image 2.jpeg" alt="Poster" class="w-full h-[300px] md:h-[500px] object-cover">
+            <div class="absolute bottom-10 md:bottom-20 left-4 md:left-20 text-white max-w-xl">
+                <div class="flex items-center space-x-2 mb-2 md:mb-4">
+                    <h4 class="text-xs md:text-sm bg-black bg-opacity-50 px-3 py-1 rounded-full">Powered by AI</h4>
+                    <span class="bg-white text-black px-3 py-1 rounded-full text-xs md:text-sm font-medium">BETA</span>
+                </div>
+                <h1 class="text-2xl md:text-5xl font-bold mb-2 md:mb-4">Plan your kind of trip</h1>
+                <h2 class="text-lg md:text-2xl mb-4 md:mb-6">Get custom recs for all the things you're into with AI trip builder</h2>
+                <div class="inline-flex items-center bg-white text-black px-4 md:px-6 py-3 rounded-full cursor-pointer hover:bg-gray-100 transition-colors duration-200 text-sm md:text-base font-medium">
+                    <svg class="w-4 h-4 md:w-6 md:h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.45284 2.71266C7.8276 1.76244 9.1724 1.76245 9.54716 2.71267L10.7085 5.65732C10.8229 5.94743 11.0526 6.17707 11.3427 6.29148L14.2873 7.45284C15.2376 7.8276 15.2376 9.1724 14.2873 9.54716L11.3427 10.7085C11.0526 10.8229 10.8229 11.0526 10.7085 11.3427L9.54716 14.2873C9.1724 15.2376 7.8276 15.2376 7.45284 14.2873L6.29148 11.3427C6.17707 11.0526 5.94743 10.8229 5.65732 10.7085L2.71266 9.54716C1.76244 9.1724 1.76245 7.8276 2.71267 7.45284L5.65732 6.29148C5.94743 6.17707 6.17707 5.94743 6.29148 5.65732L7.45284 2.71266Z" fill="#000000"/>
+                    </svg>
+                    <span>Start a trip with AI</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    <div class="container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="bg-[#F2ECF9] rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between hover-scale">
+            <div class="text-center md:text-left mb-4 md:mb-0 w-full md:w-1/2">
+                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4">Tips for Your next Travel trips.</h3>
+                <p class="mb-4 text-sm md:text-base text-gray-700">Essential travel tips to know before traveling. From choosing where to stay to airport travel tips.</p>
+                <button class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm md:text-base font-medium">Explore now</button>
+            </div>
+            <div class="w-24 h-24 md:w-32 md:h-32">
+                <img src="images/image 3.jpeg" alt="Explore" class="w-full h-full object-cover rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="mb-6 md:mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Explore the world's most stunning seasides</h2>
+            <p class="text-gray-600 text-sm md:text-base">2025's Travellers' Choice Awards best of the Best Beaches</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image 4.jpeg" alt="World" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">World</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image 5.jpeg" alt="Europe" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Europe</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image 6.jpeg" alt="Asia" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Asia</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image 7.jpeg" alt="SouthPacific" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">SouthPacific</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <div class="container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="mb-6 md:mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Ways to tour Chennai</h2>
+            <p class="text-gray-600 text-sm md:text-base">Book these experiences for a close-up look at Chennai.</p>
+        </div>
+        <div class="swiper experiencesSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="rounded-lg overflow-hidden shadow-lg hover-scale">
+                        <img src="images/image cap 1.jpeg" alt="Experience" class="w-full h-40 md:h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm md:text-base">Half-Day Railway Market and Floating Market Tour in Thailand</h4>
+                            <p class="text-gray-600 mb-2 text-xs md:text-sm">4.1⭐⭐⭐⭐(291)</p>
+                            <p class="font-bold text-sm md:text-base">₹8,239 for Adult</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="rounded-lg overflow-hidden shadow-lg hover-scale">
+                        <img src="images/image cap 2.jpeg" alt="Experience" class="w-full h-40 md:h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm md:text-base">Fontainhas Heritage Walk by Make It Happen</h4>
+                            <p class="text-gray-600 mb-2 text-xs md:text-sm">4.5⭐⭐⭐⭐(291)</p>
+                            <p class="font-bold text-sm md:text-base">₹2,239 for Adult</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="rounded-lg overflow-hidden shadow-lg hover-scale">
+                        <img src="images/image cap 3.jpeg" alt="Experience" class="w-full h-40 md:h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm md:text-base">Ninh Binh Full-Day Tour from Hanoi to Hoa Lu, Tam Coc & Mua Cave Via Boat & Bike</h4>
+                            <p class="text-gray-600 mb-2 text-xs md:text-sm">4.1⭐⭐⭐⭐(291)</p>
+                            <p class="font-bold text-sm md:text-base">₹6,239 for Adult</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="rounded-lg overflow-hidden shadow-lg hover-scale">
+                        <img src="images/image cap 4.jpeg" alt="Experience" class="w-full h-40 md:h-48 object-cover">
+                        <div class="p-4">
+                            <h4 class="font-bold mb-2 text-sm md:text-base">Cu Chi Tunnels and Mekong Delta Full Day Tour</h4>
+                            <p class="text-gray-600 mb-2 text-xs md:text-sm">4.1⭐⭐⭐⭐(291)</p>
+                            <p class="font-bold text-sm md:text-base">₹5,239 for Adult</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+  
+    <div class="bg-[#F2F1EC] py-6 md:py-10">
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">More to Explore</h2>
+            <div class="swiper exploreSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="rounded-lg overflow-hidden shadow-lg hover-scale">
+                            <img src="images/image exp 1.jpeg" alt="Explore" class="w-full h-40 md:h-48 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-bold text-sm md:text-base">7 Bangkok hotels that highlight Thailand's spectacular architecture</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="rounded-lg overflow-hidden shadow-lg hover-scale">
+                            <img src="images/image exp 2.jpeg" alt="Explore" class="w-full h-40 md:h-48 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-bold text-sm md:text-base">3 days in Tokyo: The perfect itinerary</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="rounded-lg overflow-hidden shadow-lg hover-scale">
+                            <img src="images/image exp 3.jpeg" alt="Explore" class="w-full h-40 md:h-48 object-cover">
+                            <div class="p-4">
+                                <h4 class="font-bold text-sm md:text-base">Where Bali's best chefs go on their days off</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="mb-6 md:mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Dream Your Next Trip</h2>
+            <p class="text-gray-600 text-sm md:text-base">Weekend getaways from Chennai (Madras)</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image trip 1.jpeg" alt="Bengaluru" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Bengaluru,India</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image trip 3.jpeg" alt="Chennai" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Chennai(Madras),India</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image trip 2.jpeg" alt="Ooty" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Ooty,India</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image trip 4.jpeg" alt="Madikeri" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Madikeri,India</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="mb-6 md:mb-8">
+            <h2 class="text-2xl md:text-3xl font-bold mb-2">Top destinations for your next holiday</h2>
+            <p class="text-gray-600 text-sm md:text-base">Weekend getaways from World</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image des 1.jpeg" alt="Thailand" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Thailand</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image des 4.jpeg" alt="Singapore" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Singapore</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image des 3.jpeg" alt="India" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">India</h4>
+                </div>
+            </div>
+            <div class="relative rounded-lg overflow-hidden group cursor-pointer hover-scale">
+                <img src="images/image des 2.jpeg" alt="Indonesia" class="w-full h-48 md:h-64 object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <h4 class="text-white text-lg md:text-xl font-bold">Indonesia</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="bg-[#F2ECF9] rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 hover-scale">
+            <div class="w-full md:w-1/2">
+                <img src="images/image sec 1.jpeg" alt="Advertisement" class="w-full h-auto rounded-xl object-cover">
+            </div>
+            <div class="w-full md:w-1/2 flex flex-col items-center justify-center text-center space-y-6">
+                <div class="flex items-center gap-2">
+                    <img src="images/image 1.jpeg" alt="Logo" class="w-6 h-6 rounded-full">
+                    <p class="text-sm text-gray-600">Sponsored by <span class="underline cursor-pointer hover:text-black transition-colors duration-200">Wanderlab</span></p>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold">Watch The Wanderer</h1>
+                <p class="text-lg text-gray-700 max-w-md">Tripadvisor's award-winning travel series, now streaming on Amazon Prime Video</p>
+                <button class="bg-black text-white px-8 py-3 rounded-full hover:bg-gray-800 transition-colors duration-200 text-base font-medium">Learn more</button>
+            </div>
+        </div>
+    </div>
+
+  
+    <div class="container mx-auto px-4 md:px-6 py-6 md:py-10">
+        <div class="bg-[#FFF7E1] rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between hover-scale">
+            <div class="w-full md:w-1/2 text-center md:text-left mb-4 md:mb-0">
+                <img src="images/image sec 2.jpeg" alt="Award" class="w-16 h-16 md:w-20 md:h-20 mx-auto md:mx-0 mb-4">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">Travellers' Choice Awards Best of the Best</h2>
+                <p class="mb-6 text-sm md:text-base text-gray-700">Among our top 1% of places, stays, eats, and experiences—decided by you.</p>
+                <button class="bg-black text-white px-6 py-3 rounded-full hover:bg-gray-800 transition-colors duration-200 text-sm md:text-base font-medium">See the winners</button>
+            </div>
+            <div class="w-full md:w-1/2">
+                <img src="images/image sec 3.jpeg" alt="Award Image" class="w-full h-auto rounded-lg">
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="bg-gray-100 mt-8 md:mt-16">
+        <div class="container mx-auto px-4 md:px-6 py-8 md:py-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <div>
+                    <h5 class="font-bold mb-4 text-sm md:text-base">About Tripadvisor</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">About Us</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Press</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Resources and Policies</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Careers</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Trust & Safety</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Contact us</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Accessibility Statement</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4 text-sm md:text-base">Explore</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Write a review</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Add a Place</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Join</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Travellers' Choice</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Help Centre</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Travel Stories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4 text-sm md:text-base">Do Business With Us</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Owners & DMO/CVB</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Business Advantage</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Sponsored Placements</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Access our Content API</a></li>
+                    </ul>
+                    <h5 class="font-bold mt-4 mb-4 text-sm md:text-base">Get The App</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">iPhone App</a></li>
+                        <li><a href="#" class="hover:text-gray-600 text-sm md:text-base transition-colors duration-200">Android App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-bold mb-4 text-sm md:text-base">Tripadvisor Sites</h5>
+                    <p class="text-sm md:text-base">Book tours and attraction tickets on <u class="cursor-pointer hover:text-gray-600 transition-colors duration-200">Viator</u></p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 mt-6 md:mt-8 pt-6 md:pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex items-center mb-4 md:mb-0">
+                        <img src="images/image 1.jpeg" alt="Tripadvisor Logo" class="w-6 h-6 md:w-8 md:h-8">
+                        <p class="ml-2 text-xs md:text-sm">&copy;2025 Tripadvisor LLC All rights reserved.</p>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-2 md:gap-4">
+                        <a href="#" class="text-xs md:text-sm hover:text-gray-600 transition-colors duration-200">Terms of Use</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-gray-600 transition-colors duration-200">Privacy and Cookies Statement</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-gray-600 transition-colors duration-200">Cookie consent</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-gray-600 transition-colors duration-200">Site Map</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-gray-600 transition-colors duration-200">How the site works</a>
+                        <a href="#" class="text-xs md:text-sm hover:text-gray-600 transition-colors duration-200">Contact us</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 md:mt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="flex space-x-2 md:space-x-4 mb-4 md:mb-0">
+                    <select class="border rounded-lg px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-gray-200">
+                        <option>INR</option>
+                        <option>$ US</option>
+                        <option>Yen</option>
+                    </select>
+                    <select class="border rounded-lg px-3 py-2 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-gray-200">
+                        <option>India</option>
+                        <option>USA</option>
+                        <option>Japan</option>
+                    </select>
+                </div>
+                <div class="flex space-x-4 md:space-x-6 text-xl md:text-2xl">
+                    <i class="fa-brands fa-facebook hover:text-gray-600 cursor-pointer transition-colors duration-200"></i>
+                    <i class="fa-brands fa-x-twitter hover:text-gray-600 cursor-pointer transition-colors duration-200"></i>
+                    <i class="fa-brands fa-pinterest hover:text-gray-600 cursor-pointer transition-colors duration-200"></i>
+                    <i class="fa-brands fa-instagram hover:text-gray-600 cursor-pointer transition-colors duration-200"></i>
+                    <i class="fa-brands fa-youtube hover:text-gray-600 cursor-pointer transition-colors duration-200"></i>
+                    <i class="fa-brands fa-tiktok hover:text-gray-600 cursor-pointer transition-colors duration-200"></i>
+                </div>
+            </div>
+
+            <div class="mt-6 md:mt-8 text-xs md:text-sm text-gray-600 text-center">
+                <p>This is the version of our website addressed to speakers of English in India. If you are a
+                    resident of another country or region, please select the appropriate version of Tripadvisor for
+                    your country or region in the drop-down menu. Show more</p>
+            </div>
+        </div>
+    </footer>
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+ 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+       
+            const experiencesSwiper = new Swiper(".experiencesSwiper", {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                centeredSlides: true,
+                loop: true,
+                speed: 1000,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                effect: "slide",
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        centeredSlides: false,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                        centeredSlides: false,
+                    },
+                },
+            });
+
+           
+            const exploreSwiper = new Swiper(".exploreSwiper", {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                centeredSlides: true,
+                loop: true,
+                speed: 1000,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                effect: "slide",
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                        centeredSlides: false,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        centeredSlides: false,
+                    },
+                },
+            });
+
+            experiencesSwiper.autoplay.start();
+            exploreSwiper.autoplay.start();
+        });
+    </script>
+</body>
+
+</html>
